@@ -1,0 +1,118 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv55mtp0rl3gb"]
+
+[ext_resource type="Script" path="res://options.gd" id="1_s7g1g"]
+
+[node name="Main" type="Node"]
+
+[node name="Options" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s7g1g")
+
+[node name="TabBar" type="TabBar" parent="Options"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -134.0
+offset_right = 134.0
+offset_bottom = 31.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+current_tab = 0
+clip_tabs = false
+tab_count = 4
+tab_0/title = "Game"
+tab_1/title = "Sound"
+tab_2/title = "Display"
+tab_3/title = "Save"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Options"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -70.5
+offset_bottom = 70.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Options/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+
+[node name="Label4" type="Label" parent="Options/VBoxContainer/GridContainer"]
+layout_mode = 2
+tooltip_text = "Set the resolution of the game window."
+mouse_filter = 1
+text = "Window size"
+
+[node name="option_window_size" type="OptionButton" parent="Options/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+selected = 0
+
+[node name="Label" type="Label" parent="Options/VBoxContainer/GridContainer"]
+layout_mode = 2
+tooltip_text = "Select how the game is displayed on your screen."
+mouse_filter = 1
+text = "Window mode"
+
+[node name="option_window_mode" type="OptionButton" parent="Options/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Options/VBoxContainer/GridContainer"]
+layout_mode = 2
+tooltip_text = "Enable borderless windowed mode for a fullscreen experience without borders."
+mouse_filter = 1
+text = "Borderless"
+
+[node name="checkbox_borderless" type="CheckBox" parent="Options/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Options/VBoxContainer/GridContainer"]
+layout_mode = 2
+tooltip_text = "Vertical Sync synchronizes the game’s frame rate with your monitor’s refresh rate to prevent screen tearing."
+mouse_filter = 1
+text = "V-Sync"
+
+[node name="checkbox_vsync" type="CheckBox" parent="Options/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GridContainer2" type="GridContainer" parent="Options/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+columns = 4
+
+[node name="button_apply" type="Button" parent="Options/VBoxContainer/GridContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Apply"
+
+[node name="button_save" type="Button" parent="Options/VBoxContainer/GridContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save"
+
+[node name="button_close" type="Button" parent="Options/VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "Close"
+
+[node name="button_restore" type="Button" parent="Options/VBoxContainer/GridContainer2"]
+layout_mode = 2
+text = "Restore Defaults"
+
+[connection signal="button_up" from="Options/VBoxContainer/GridContainer2/button_apply" to="Options" method="_on_button_apply_button_up"]
+[connection signal="button_up" from="Options/VBoxContainer/GridContainer2/button_save" to="Options" method="_on_button_save_button_up"]
+[connection signal="button_up" from="Options/VBoxContainer/GridContainer2/button_close" to="Options" method="_on_button_close_button_up"]
+[connection signal="button_up" from="Options/VBoxContainer/GridContainer2/button_restore" to="Options" method="_on_button_restore_button_up"]

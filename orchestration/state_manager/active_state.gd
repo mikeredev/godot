@@ -1,16 +1,19 @@
 class_name ActiveState extends RefCounted
 
-var name: String
+static var name: String
 
 
 func enter() -> void:
 	pass
 
-func process(delta: float) -> void:
+
+func process(_delta: float) -> void:
 	pass
 
-func input(event: InputEvent) -> void:
+
+func input(_event: InputEvent) -> void:
 	pass
+
 
 func exit() -> void:
 	pass

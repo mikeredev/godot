@@ -1,10 +1,10 @@
-class_name StateManager extends Node
+class_name State extends Node
 
 static var current_state: ActiveState = null
 
 
-func _init(_name: String) -> void:
-	name = _name
+func _init() -> void:
+	self.name = "StateManager"
 
 
 func _input(event: InputEvent) -> void:

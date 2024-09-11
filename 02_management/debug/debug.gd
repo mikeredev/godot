@@ -4,8 +4,8 @@ class_name Debug extends RefCounted
 static func log(message: Variant, log_level: int = 0, current_state: String = "NONE") -> void:
 	var ticks: int = Time.get_ticks_msec()
 
-	if StateManager.current_state:
-		current_state = StateManager.current_state.name
+	if State.current_state:
+		current_state = State.current_state.name
 
 	match log_level:
 		0:
@@ -17,4 +17,5 @@ static func log(message: Variant, log_level: int = 0, current_state: String = "N
 			print_rich("[color=red]FAIL | %s | %s | [b]%s[/b][/color]" % [ticks, current_state, str(message)])
 			push_error(str(message))
 		3:
-			print_rich("[color=#999999]DBUG | %s | %s | %s[/color]" % [ticks, current_state, str(message)])
+			if Settings.SHOW_DEBUG_LOGS:
+				print_rich("[color=#999999]DBUG | %s | %s | %s[/color]" % [ticks, current_state, str(message)])

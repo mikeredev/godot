@@ -14,13 +14,11 @@ static func apply() -> void:
 
 
 static func set_language(language: String) -> void:
-	var _selected: String
 	match language:
 		"en":
-			_selected = language
 			TranslationServer.set_locale(language)
 		_:
-			Debug.log("unavailable language: %s" % language)
+			Debug.log("language unavailable: %s" % language)
 			set_language("en")
 			return
 	Debug.log("set language: %s" % language, 3)

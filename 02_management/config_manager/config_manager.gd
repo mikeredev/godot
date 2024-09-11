@@ -1,7 +1,7 @@
 class_name ConfigManager extends RefCounted
 
-static var user_settings_file: String = FilePathDB.settings["user"]
 static var user_settings: ConfigFile
+static var user_settings_file: String = FilePathDB.settings["user"]
 
 
 static func apply_user_settings() -> void:
@@ -9,14 +9,16 @@ static func apply_user_settings() -> void:
 	user_settings = ConfigFile.new()
 	if not FileAccess.file_exists(user_settings_file):
 		Debug.log("user settings not found, creating: %s" % user_settings_file, 3)
-		create_settings()
+		create()
 
 	load_settings(user_settings)
-	if verify(GeneralSettings): GeneralSettings.apply()
-	if verify(DisplaySettings): DisplaySettings.apply()
+	if verify(GeneralSettings):
+		GeneralSettings.apply()
+	if verify(DisplaySettings):
+		DisplaySettings.apply()
 
 
-static func create_settings() -> void:
+static func create() -> void:
 	set_default(GeneralSettings)
 	set_default(DisplaySettings)
 	save_settings(user_settings)

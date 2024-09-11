@@ -1,20 +1,26 @@
 class_name Dialog extends Node
 
 enum Notice { INFO, WARN, ERROR, CONFIRM }
+
 static var scene_root: Control
 static var _connect: int
 
 
+func _init() -> void:
+	self.name = "DialogManager"
+
+
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("ui_cancel") and scene_root:
-		close_scene_root()
+		close_scene_root() # TODO close notif not whole scene
 
 
 static func load_dialog(notice: Notice) -> void:
 	var panel: MarginContainer
-	scene_root = SceneManager.create(FilePathDB.system["notification"])
-	var dialogue_container: NodeContainer = Registry.get_container("Dialogue")
-	SceneManager.add(scene_root, dialogue_container)
+	var dialog_scene_path: String = FilePathDB.system["notification"]
+	scene_root = Scene.create(dialog_scene_path)
+	var dialog_container: NodeContainer = Registry.get_container("Dialog")
+	dialog_container.add_child(scene_root)
 	scene_root.process_mode = Node.PROCESS_MODE_ALWAYS
 
 	for child: MarginContainer in scene_root.get_children():
@@ -34,8 +40,7 @@ static func load_dialog(notice: Notice) -> void:
 
 static func info(message: String) -> void:
 	load_dialog(Notice.INFO)
-	var label_info = scene_root.get_node("%LabelInfo")
-	#label_info.custom_minimum_size.x = 400
+	var label_info: Label = scene_root.get_node("%LabelInfo")
 	label_info.text = message
 
 

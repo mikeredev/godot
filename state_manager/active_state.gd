@@ -7,7 +7,7 @@ func enter() -> void:
 	pass
 
 
-func process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 
